@@ -1,22 +1,15 @@
 import React from "react";
+import classes from './Profile.module.css';
+import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
-        <div className='app-content'>
+        <div className={classes.profile}>
             <img src='https://t4.ftcdn.net/jpg/02/76/08/07/360_F_276080724_hltnCyDjcqAyRtLzDYo3T2jXbBtCD7fl.jpg' />
             <div>
                 Ava + Description
             </div>
-            <div>
-                My Posts
-                <div>
-                    New Posts
-                </div>
-                <div> 
-                    <div>post 1</div>
-                    <div>post 2</div>
-                </div>
-            </div>
+            <MyPosts />
         </div>
     );
 }
