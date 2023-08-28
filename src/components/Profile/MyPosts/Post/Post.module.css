@@ -1,8 +1,13 @@
-.item {
+.post {
     color: green;
+    padding: 10px 0 0 0;
 }
 
-.item img {
+.post label {
+    padding: 0 0 0 10px;
+}
+
+.post img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
