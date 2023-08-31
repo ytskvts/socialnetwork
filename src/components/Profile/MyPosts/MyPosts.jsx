@@ -3,14 +3,22 @@ import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
+
+    let newPostElement = React.createRef()
+
+    let addPost = () => {
+        props.addPost(newPostElement.current.value)
+        newPostElement.current.value = ''
+    };
+
     return (
         <div className={styles.myPostBlock}>
             <h3>My Posts</h3>
             <div>
-                <textarea></textarea>
+                <textarea ref={newPostElement}></textarea>
             </div>
             <div>
-                <button>Add Post</button>
+                <button onClick={ addPost }>Add Post</button>
             </div>
             <div>
                 {props.postsData.map((el) => <Post text={el.text} likesCounter={`${el.likesCounter}`} />)}
