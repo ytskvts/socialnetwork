@@ -1,23 +1,27 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, {addPost, subscribe, updateNewPostText} from "./redux/state";
 import ReactDOM from "react-dom/client";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
+import store from "./redux/state"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let rendererEntireTree = (state) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} addPost={addPost} updateNewPostText ={updateNewPostText}/>
+                <App state={store.getState()}
+                     addPost={store.addPost.bind(store)}
+                     updateNewPostText ={store.updateNewPostText.bind(store)}
+                />
             </BrowserRouter>
         </React.StrictMode>
     );
 }
 
-subscribe(rendererEntireTree)
-rendererEntireTree(state)
+store.subscribe(rendererEntireTree)
+
+rendererEntireTree(store.getState())
 
 reportWebVitals();
