@@ -1,8 +1,12 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT= 'UPDATE-NEW-POST-TEXT';
-
+import profileReducer from "./ProfileReducer";
+import dialogsReducer from "./DialogsReducer";
+import sidebarReducer from "./SidebarReducer";
 
 let store = {
+
+    _callSubscriber() {
+        console.log("state changed")
+    },
     _state: {
         profilePage: {
             postsData: [
@@ -24,11 +28,9 @@ let store = {
                 {id: 2, text: "Whatsup"},
                 {id: 3, text: "Yo"},
             ],
+            newMessageText: "Some text",
         },
-    },
-
-    _callSubscriber() {
-        console.log("state changed")
+        sidebar: {},
     },
 
     subscribe(observer) {
@@ -40,37 +42,10 @@ let store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST:
-                this._state.profilePage.postsData.push({
-                    id: this._state.profilePage.postsData.count,
-                    text: this._state.profilePage.newPostText,
-                    likesCounter: 0
-                })
-                this._state.profilePage.newPostText = "";
-                this._callSubscriber(this._state)
-                break;
-            case UPDATE_NEW_POST_TEXT:
-                this._state.profilePage.newPostText = action.newText
-                this._callSubscriber(this._state)
-                break;
-            default:
-                console.log("actions type is/'t defined")
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._callSubscriber(this._state)
     },
 }
-
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST,
-    }
-}
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
-    }
-}
-
-
 export default store;
