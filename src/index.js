@@ -7,13 +7,11 @@ import App from "./App";
 import store from "./redux/reduxStore"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-let rendererEntireTree = (state) => {
+let rendererEntireTree = (store) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state}
-                     dispatch={store.dispatch.bind(store)}
-                />
+                <App store={store}/>
             </BrowserRouter>
         </React.StrictMode>
     );

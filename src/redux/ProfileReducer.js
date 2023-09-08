@@ -19,7 +19,7 @@ let initialState = {
         {id: 0, text: "Hello", likesCounter: 15},
         {id: 1, text: "Bye", likesCounter: 20},
     ],
-    newPostText: "Some text",
+    newPostText: "Some hfgtext",
 }
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {

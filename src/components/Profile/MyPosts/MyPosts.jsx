@@ -10,12 +10,14 @@ const MyPosts = (props) => {
 
     let newPostElement = React.createRef()
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator())
+    let onAddPost = () => {
+        props.addPost()
+        // props.dispatch(addPostActionCreator())
     };
 
     let onPostChange = () => {
-        props.dispatch(updateNewPostTextActionCreator(newPostElement.current.value))
+        // props.dispatch(updateNewPostTextActionCreator(newPostElement.current.value))
+        props.updateNewPostText(newPostElement.current.value)
     }
 
     return (
@@ -28,7 +30,7 @@ const MyPosts = (props) => {
                 />
             </div>
             <div>
-                <button onClick={ addPost }>Add Post </button>
+                <button onClick={ onAddPost }>Add Post </button>
             </div>
             <div>
                 {props.postsData.map((el) => <Post text={el.text} likesCounter={`${el.likesCounter}`} />)}
