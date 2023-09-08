@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import store from "./redux/store"
+import store from "./redux/reduxStore"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let rendererEntireTree = (state) => {
@@ -21,6 +21,8 @@ let rendererEntireTree = (state) => {
 
 rendererEntireTree(store.getState())
 
-store.subscribe(rendererEntireTree)
+store.subscribe( () => {
+    rendererEntireTree(store.getState())
+})
 
 reportWebVitals();

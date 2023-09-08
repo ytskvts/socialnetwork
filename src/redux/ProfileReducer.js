@@ -13,7 +13,15 @@ export const updateNewPostTextActionCreator = (text) => {
         newText: text
     }
 }
-const profileReducer = (state, action) => {
+
+let initialState = {
+    postsData: [
+        {id: 0, text: "Hello", likesCounter: 15},
+        {id: 1, text: "Bye", likesCounter: 20},
+    ],
+    newPostText: "Some text",
+}
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             state.postsData.push({
